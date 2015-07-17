@@ -97,11 +97,11 @@ h2 {
 }
 
 #content .form form input {
-    height: 10px;
+    height: 20px;
     font-size: 12px;
     color: #595A59;
     display: inline-block;
-    padding: 5px;
+    padding: 0 5px;
     width: 150px;
     margin: 7px 0 0 0;
     border: none;
@@ -193,5 +193,41 @@ h2 {
 
 #content .form form .li-1 h2, #content .form form .li-1 h3 {
     color: white;
+
+}
+
+#content #error {
+    background: #da5f4f;
+    padding: 50px 0;
+    width: 500px;
+    margin: -450px auto 0 auto;
+    text-align: center;
+    display: none;
+    z-index: 10;
+    position: relative;
+
+}
+
+#error h3, #error i {
+    color: white;
+    font-size: 30px;
+
+}
+
+#error .error-button {
+    display: block;
+    width: 200px;
+    margin: 50px auto 0 auto;
+    cursor: pointer;
+    border: none;
+    background: white;
+    padding: 10px 0;
+    font-size: 18px;
+    color: #595A59;
+
+}
+
+#error .error-button:hover {
+    background: #bad8f7;
 
 }
