@@ -10,7 +10,7 @@
             <div id="donutchart"></div>
         </div>
         <ul class="form">
-            <form>
+            <form name="toolForm">
                 <li class="li-1">
                     <div class="li-title">
                         <h2>Phone</h2>
@@ -20,7 +20,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-1" class="number">
+                        <input type="number" name="number-1" id="number-1" class="number">
                     </div><!--weight-->
                 </li>
                 <li>
@@ -32,7 +32,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-2" class="number">
+                        <input type="number" name="number-2" id="number-2" class="number">
                     </div><!--weight-->
                 </li>
                 <li class="li-1">
@@ -44,7 +44,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-3" class="number">
+                        <input type="number" name="number-3" id="number-3" class="number">
                     </div><!--weight-->
                 </li>
                 <li>
@@ -56,7 +56,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-4" class="number">
+                        <input type="number" name="number-4" id="number-4" class="number">
                     </div><!--weight-->
                     <div class="button">
                 </li>
@@ -69,7 +69,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-5" class="number">
+                        <input type="number" name="number-5" id="number-5" class="number">
                     </div><!--weight-->
                 </li>
                 <li>
@@ -81,7 +81,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-6" class="number">
+                        <input type="number" name="number-6" id="number-6" class="number">
                     </div><!--weight-->
                 </li>
                 <li class="li-1">
@@ -93,7 +93,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-7" class="number">
+                        <input type="number" name="number-7" id="number-7" class="number">
                     </div><!--weight-->
                 </li>
                 <li>
@@ -105,7 +105,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-8" class="number">
+                        <input type="number" name="number-8" id="number-8" class="number">
                     </div><!--weight-->
                 </li>
                 <li class="li-1">
@@ -117,7 +117,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-9" class="number">
+                        <input type="number" name="number-9" id="number-9" class="number">
                     </div><!--weight-->
                 </li>
                 <li>
@@ -129,7 +129,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-10" class="number">
+                        <input type="number" name="number-10" id="number-10" class="number">
                     </div><!--weight-->
                 </li>
                 <li class="li-1">
@@ -141,7 +141,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-11" class="number">
+                        <input type="number" name="number-11" id="number-11" class="number">
                     </div><!--weight-->
                 </li>
                 <li>
@@ -153,7 +153,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-12" class="number">
+                        <input type="number" name="number-12" id="number-12" class="number">
                     </div><!--weight-->
                 </li>
                 <li class="li-1">
@@ -165,7 +165,7 @@
                     </div><!--tool-->
                     <div class="weight">
                         <h3>Weight:</h3>
-                        <input type="number" name="number" id="number-13" class="number">
+                        <input type="number" name="number-13" id="number-13" class="number">
                     </div><!--weight-->
                 </li>
                 <li class="li-button">
@@ -175,6 +175,12 @@
                 </li>
             </form>
         </ul>
+        <div id="error">
+            <div class="inner-error">
+                <h3>Weight must be a number and all inputs must be filled.</h3>
+            </div>
+            <button class="error-button" onclick="closeError()">Okay</button>
+        </div>
     </div><!--content-->
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
@@ -209,7 +215,7 @@
                     fontSize: 36,
                     bold: false
                 },
-                pieHole: 0.4,
+                pieHole: 0.3,
                 fontSize: 24,
                 chartArea: {
                     top: 150
@@ -246,13 +252,18 @@
                     var n = parseInt(seen[l + 1]);
                     var newWeight = m + n;
                     console.log(seen);
-                    seen.push(str, newWeight);
-                    seen.splice(l, 2)
+                    console.log(newWeight);
+                    if (newWeight > 0) {
+                        seen.push(str, newWeight);
+                        seen.splice(l, 2)
+                    } else{
+                        document.getElementById("error").style.display = "block";
+                    }
                 }
             }
             console.log(seen);
             dataArray.splice(1,13);
-            for (o = 0; o<(seen.length - 1)/2; o++) {
+            for (o = 0; o < (seen.length - 1)/2; o++) {
                 var j = o * 2;
                 var k = j + 1;
                 var tool = [seen[j], parseInt(seen[k])];
@@ -263,9 +274,8 @@
             event.preventDefault();
         });
 
-
-
-
-
+        function closeError() {
+            document.getElementById("error").style.display = "none";
+        }
     </script>
 </html>
